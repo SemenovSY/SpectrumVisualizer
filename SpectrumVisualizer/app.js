@@ -33,12 +33,14 @@ function windowResized() {
         audioStringName = document.createElement("marquee");
         audioStringArtist.id = 'artist-bottom';
         audioStringName.id = 'melody-bottom';
-        audioStringArtist.scrollamount="6px"
-        audioStringName.scrollamount="5px"
+        audioStringArtist.scrollAmount=6;
+        audioStringName.scrollAmount=5;
         audioStringArtist.direction = 'left';
         audioStringArtist.innerHTML = artist.toUpperCase();
         audioStringName.direction = 'right';
         audioStringName.innerHTML = songName.toUpperCase();
+        audioStringArtist.scrollDelay = 300*(Math.random());
+        audioStringName.scrollDelay = 300*(Math.random());
         document.getElementById('insert-songs').appendChild(audioStringArtist)
         document.getElementById('insert-songs').appendChild(audioStringName)
     }
@@ -124,11 +126,13 @@ function preload() {
             audioStringName = document.createElement("marquee");
             audioStringArtist.id = 'artist-bottom';
             audioStringName.id = 'melody-bottom';
-            audioStringArtist.scrollamount="6px"
-            audioStringName.scrollamount="5px"
+            audioStringArtist.scrollAmount=6;
+            audioStringName.scrollAmount=5;
             audioStringArtist.direction = 'left';
             audioStringArtist.innerHTML = artist.toUpperCase();
             audioStringName.direction = 'right';
+            audioStringArtist.scrollDelay = 300*(Math.random());
+            audioStringName.scrollDelay = 300*(Math.random());
             audioStringName.innerHTML = songName.toUpperCase();
             document.getElementById('insert-songs').appendChild(audioStringArtist)
             document.getElementById('insert-songs').appendChild(audioStringName)
