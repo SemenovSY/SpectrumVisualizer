@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+.preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+.back {
+	position: relative;
+	left: 14%;
+	top: 20px;
+    background-color: black;
+
+}
+
+.back:before {
+    position: absolute;
+    padding: 10px;
+}
+
+.button_base {
+	font-family: 'Helvetica';
+    font-weight: 770;
+    margin: 0;
+    border: 0;
+    font-size: 15px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    --user-select: none;
+    cursor: default;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b04_3d_tick {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+    perspective-origin: center top;
+    -webkit-perspective-origin: center top;
+    -moz-perspective-origin: center top;
+}
+
+.b04_3d_tick div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 13px;
+    border: #000000 solid 0px;
+}
+
+.b04_3d_tick div:nth-child(1) {
+    color: rgb(60, 60, 60);
+    background-color: rgb(144, 144, 144);
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+	border-radius: 5px;
+}
+
+.b04_3d_tick div:nth-child(2) {
+    color: rgb(144, 144, 144);
+    background-color: rgb(21,21,21);
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: left top;
+    -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+}
+
+.b04_3d_tick:hover div:nth-child(1) {
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.b04_3d_tick:hover div:nth-child(2) {
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}

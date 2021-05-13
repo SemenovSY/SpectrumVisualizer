@@ -1,0 +1,121 @@
+html {
+    background: url('./background.jpg') no-repeat;
+    background-size: 50vw;
+    background-position: left -30% top -90%;
+    background-color: rgb(21,21,21);
+    overflow: hidden;
+}
+
+.visualizer {
+    position: fixed;
+
+}
+
+#thefile {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+  }
+  
+  audio {
+    visibility: hidden;
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .input__wrapper {
+    width: 110%;
+    position: relative;
+    left: 9%;
+    margin: 10px 0;
+    text-align: center;
+    
+  }
+   
+  .input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+   
+  .input__file-icon-wrapper {
+    height: 30px;
+    width: 30px;
+    margin-left: 2px;
+    margin-right: 15px;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-right: 3px solid rgb(60, 60, 60);
+    color: rgb(60, 60, 60)
+  }
+   
+  .input__file-button-text {
+    line-height: 1;
+    margin-top: 1px;
+    margin-left: 15px;
+    font-family: 'Helvetica';
+    font-weight: 770;
+    color: rgb(60, 60, 60);
+  }
+   
+  .input__file-button {
+    width: 200px;
+    max-width: 290px;
+    height: 30px;
+    background: rgb(144, 144, 144);
+    color: black;
+    font-size: 17px;
+    font-weight: 370;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .audio-name {
+    background-color: rgb(23,23,23);
+    font-family: 'Helvetica';
+    font-weight: 770;
+    position: absolute;
+    top: -25%;
+    right: 15%;
+    text-align: left;
+    color:rgb(133,133,133);
+    width: 40vw;
+    transform: rotate(20deg) ;
+  }
+
+  #artist-bottom {
+    transform: rotate(-2deg);
+    font-size: 50px;
+    margin-bottom: 0;
+    
+  }
+
+  #melody-bottom {
+    transform: rotate(-2deg);
+    font-size: 30px;
+    color:rgb(133,133,133);
+    margin-top: 0;
+  }
+  
+  .buttons {
+    position: absolute;
+    left: 35vw;
+    top: 40vh;
+  }
