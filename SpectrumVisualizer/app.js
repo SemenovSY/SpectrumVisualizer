@@ -35,9 +35,9 @@ function windowResized() {
         audioStringName.id = 'melody-bottom';
         audioStringArtist.scrollAmount=num/2 + 6;
         audioStringName.scrollAmount=num/2 + 5;
-        audioStringArtist.direction = 'left';
+        audioStringArtist.direction = num % 2 === 0 ? 'left' : 'right';
         audioStringArtist.innerHTML = artist.toUpperCase();
-        audioStringName.direction = 'right';
+        audioStringName.direction = num % 2 === 0 ? 'left' : 'right';
         audioStringName.innerHTML = songName.toUpperCase();
         audioStringArtist.scrollDelay = 300*(Math.random());
         audioStringName.scrollDelay = 300*(Math.random());
@@ -128,9 +128,9 @@ function preload() {
             audioStringName.id = 'melody-bottom';
             audioStringArtist.scrollAmount=num/2 + 6;
             audioStringName.scrollAmount=num/2 + 5;
-            audioStringArtist.direction = 'left';
+            audioStringArtist.direction = num % 2 === 0 ? 'left' : 'right';
             audioStringArtist.innerHTML = artist.toUpperCase();
-            audioStringName.direction = 'right';
+            audioStringName.direction = num % 2 === 0 ? 'left' : 'right';
             audioStringArtist.scrollDelay = 300*(Math.random());
             audioStringName.scrollDelay = 300*(Math.random());
             audioStringName.innerHTML = songName.toUpperCase();
