@@ -33,8 +33,8 @@ function windowResized() {
         audioStringName = document.createElement("marquee");
         audioStringArtist.id = 'artist-bottom';
         audioStringName.id = 'melody-bottom';
-        audioStringArtist.scrollAmount=6;
-        audioStringName.scrollAmount=5;
+        audioStringArtist.scrollAmount=num/2 + 6;
+        audioStringName.scrollAmount=num/2 + 5;
         audioStringArtist.direction = 'left';
         audioStringArtist.innerHTML = artist.toUpperCase();
         audioStringName.direction = 'right';
@@ -126,8 +126,8 @@ function preload() {
             audioStringName = document.createElement("marquee");
             audioStringArtist.id = 'artist-bottom';
             audioStringName.id = 'melody-bottom';
-            audioStringArtist.scrollAmount=6;
-            audioStringName.scrollAmount=5;
+            audioStringArtist.scrollAmount=num/2 + 6;
+            audioStringName.scrollAmount=num/2 + 5;
             audioStringArtist.direction = 'left';
             audioStringArtist.innerHTML = artist.toUpperCase();
             audioStringName.direction = 'right';
