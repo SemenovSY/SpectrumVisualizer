@@ -3,6 +3,7 @@ let maxD;
 let ma;
 songIsPlaying = false;
 buttonWasPressed = false;
+lastSample = false;
 
 function windowResized() {
     
@@ -16,8 +17,8 @@ function windowResized() {
     rLine.style.right = '15vw';
     rLine.style.width = '40vw';
 
+    getInfo();
     deleteInfo();
-    
     createInfo();
 
   }
@@ -26,6 +27,9 @@ function preload() {
     buttons = document.getElementById("buttons")
     var file = document.getElementById("thefile");
     file.onchange = function() {
+        
+        buttonWasPressed = false;
+
         buttonPrev = document.getElementById("prev");
         buttonFoll = document.getElementById("foll");
         buttonPrev.innerHTML = 'PLAYING'
@@ -37,6 +41,7 @@ function preload() {
         rLine.style.width = '40vw';
         
         if (songIsPlaying === true) {
+            console.log('here')
             audio.parentNode.removeChild(audio)
             context.close();
             for (let num = 0; num < int(windowHeight/70); num++) {
@@ -60,6 +65,8 @@ function preload() {
         audio.src = URL.createObjectURL(files[0]);
         audio.load();
         audio.play();
+        lastSample = false;
+
         context = new AudioContext();
 
         src = context.createMediaElementSource(audio);
@@ -79,22 +86,7 @@ function preload() {
             dataArray = new Uint8Array(bufferLength);
         }
         
-
-        let myre = /(.+)\-.(.+)\./g;
-        let fileName = files[0].name;
-        fileName = fileName.replaceAll('_', ' ');
-        fileName = fileName.replaceAll(/[0-9]/g, '');
-
-        try {
-            let fullName = myre.exec(fileName);
-            artist = fullName[1];
-            songName = fullName[2];
-        } catch {
-            myre = /(.+)\./g
-            let fullName = myre.exec(fileName);
-            artist = fullName[1];
-        }
-
+        getInfo();
         deleteInfo();
         createInfo();
 
@@ -111,7 +103,7 @@ function setup() {
 }
 
 function draw() {
-    if (songIsPlaying === true) {
+    if (songIsPlaying === true || lastSample === true) {
         analyser.getByteFrequencyData(dataArray);
         dataArray.reverse()
         clear()
@@ -150,17 +142,24 @@ function draw() {
     }   
 }
 
-
 function buttonPressed() {
     if (buttonWasPressed === false) {
         buttonPrev.innerHTML = 'PAUSED';
         buttonFoll.innerHTML = 'PLAY';
         audio.pause();
-        buttonWasPressed = true
+        buttonWasPressed = true;
     } else {
         buttonPrev.innerHTML = 'PLAYING';
         buttonFoll.innerHTML = 'PAUSE';
+
+        if (lastSample === true) {
+            getInfo();
+            deleteInfo();
+            createInfo();
+        }
+       
         audio.play();
+        
         buttonWasPressed = false
     }
 }
@@ -200,19 +199,32 @@ function deleteInfo() {
     }
 }
 
+function getInfo() {
+    myre = /(.+)\-.(.+)\./g;
+    fileName = files[0].name;
+    fileName = fileName.replaceAll('_', ' ');
+    fileName = fileName.replaceAll(/[0-9]/g, '');
+
+    try {
+        let fullName = myre.exec(fileName);
+        artist = fullName[1];
+        songName = fullName[2];
+    } catch {
+        myre = /(.+)\./g
+        let fullName = myre.exec(fileName);
+        artist = fullName[1];
+    }
+}
 function sampleOnePressed() {
     if (songIsPlaying === false || buttonWasPressed === true) {
-        try {
-            audio.parentNode.removeChild(audio);
-            context.close();
-        } catch {
-            
-        }
+        
         audioElement = document.createElement("audio");
         audioElement.id = 'song';
         audioElement.controls = 'controls';
         audioElement.src = './Samples/sample-one.mp3';
         audioElement.play();
+
+        lastSample = true;
 
         artist = 'SAMPLE'
         songName = 'ONE'
@@ -220,20 +232,20 @@ function sampleOnePressed() {
         deleteInfo();
         createInfo();
 
-        context = new AudioContext();
+        sample_context = new AudioContext();
 
-        src = context.createMediaElementSource(audioElement);
+        sample_src = context.createMediaElementSource(audioElement);
 
-        analyser = context.createAnalyser();
+        sample_analyser = context.createAnalyser();
 
-        src.connect(analyser);
-        analyser.connect(context.destination);
+        sample_src.connect(analyser);
+        sample_analyser.connect(context.destination);
 
-        analyser.fftSize = 4096;
+        sample_analyser.fftSize = 4096;
         bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
 
-        analyser.getByteFrequencyData(dataArray);
+        sample_analyser.getByteFrequencyData(dataArray);
 
     } else {
 
@@ -242,17 +254,14 @@ function sampleOnePressed() {
 
 function sampleTwoPressed() {
     if (songIsPlaying === false || buttonWasPressed === true) {
-        try {
-            audio.parentNode.removeChild(audio);
-            context.close();
-        } catch {
-            
-        }
+
         audioElement = document.createElement("audio");
         audioElement.id = 'song';
         audioElement.controls = 'controls';
         audioElement.src = './Samples/sample-two.mp3';
         audioElement.play();
+
+        lastSample = true;
 
         artist = 'SAMPLE';
         songName = 'TWO';
@@ -260,20 +269,20 @@ function sampleTwoPressed() {
         deleteInfo();
         createInfo();
         
-        context = new AudioContext();
+        sample_context = new AudioContext();
 
-        src = context.createMediaElementSource(audioElement);
+        sample_src = context.createMediaElementSource(audioElement);
 
-        analyser = context.createAnalyser();
+        sample_analyser = context.createAnalyser();
 
-        src.connect(analyser);
-        analyser.connect(context.destination);
+        sample_src.connect(analyser);
+        sample_analyser.connect(context.destination);
 
-        analyser.fftSize = 4096;
+        sample_analyser.fftSize = 4096;
         bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
 
-        analyser.getByteFrequencyData(dataArray);
+        sample_analyser.getByteFrequencyData(dataArray);
 
     } else {
 
