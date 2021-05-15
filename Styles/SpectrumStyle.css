@@ -119,3 +119,19 @@ html {
     left: 35vw;
     top: 40vh;
   }
+
+  #samples {
+    position: absolute;
+    left: 110px;
+    top: 35px;
+  }
+  
+  #sample2 {
+    width: 100px;
+    position: relative;
+    left: 100px;
+    bottom: 25px;
+  }
+  #sample1 {
+    width: 100px;
+  }
