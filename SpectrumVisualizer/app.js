@@ -2,6 +2,7 @@ let w = 70;
 let maxD;
 let ma;
 songIsPlaying = false;
+buttonWasPressed = false;
 
 function windowResized() {
     
@@ -15,9 +16,9 @@ function windowResized() {
     rLine.style.right = '15vw';
     rLine.style.width = '40vw';
 
-    deleteInfo()
+    deleteInfo();
     
-    createInfo()
+    createInfo();
 
   }
 
@@ -38,7 +39,6 @@ function preload() {
         if (songIsPlaying === true) {
             audio.parentNode.removeChild(audio)
             context.close();
-            songIsPlaying = false;
             for (let num = 0; num < int(windowHeight/70); num++) {
                 try {
                     audioStringArtist = document.getElementById("artist-bottom")
@@ -95,7 +95,8 @@ function preload() {
             artist = fullName[1];
         }
 
-        createInfo()
+        deleteInfo();
+        createInfo();
 
         analyser.getByteFrequencyData(dataArray);
     }
@@ -151,16 +152,16 @@ function draw() {
 
 
 function buttonPressed() {
-    if (songIsPlaying === true) {
+    if (buttonWasPressed === false) {
         buttonPrev.innerHTML = 'PAUSED';
         buttonFoll.innerHTML = 'PLAY';
         audio.pause();
-        songIsPlaying = false;
+        buttonWasPressed = true
     } else {
         buttonPrev.innerHTML = 'PLAYING';
         buttonFoll.innerHTML = 'PAUSE';
         audio.play();
-        songIsPlaying = true;
+        buttonWasPressed = false
     }
 }
 
@@ -200,7 +201,7 @@ function deleteInfo() {
 }
 
 function sampleOnePressed() {
-    if (songIsPlaying === false) {
+    if (songIsPlaying === false || buttonWasPressed === true) {
         try {
             audio.parentNode.removeChild(audio);
             context.close();
@@ -240,7 +241,7 @@ function sampleOnePressed() {
 }
 
 function sampleTwoPressed() {
-    if (songIsPlaying === false) {
+    if (songIsPlaying === false || buttonWasPressed === true) {
         try {
             audio.parentNode.removeChild(audio);
             context.close();
