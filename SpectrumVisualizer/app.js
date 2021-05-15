@@ -201,7 +201,18 @@ function createInfo() {
 
 function sampleOnePressed() {
     if (songIsPlaying === false) {
-        
+        try {
+            audio.parentNode.removeChild(audio);
+            context.close();
+        } catch {
+            
+        }
+        audioElement = document.createElement("audio");
+        audioElement.id = 'song';
+        audioElement.controls = 'controls';
+        audioElement.src = './Samples/sample-one.mp3';
+        document.getElementById('audio').appendChild(audioElement)
+        audioElement.play();
     } else {
 
     }
@@ -209,7 +220,18 @@ function sampleOnePressed() {
 
 function sampleTwoPressed() {
     if (songIsPlaying === false) {
-        
+        try {
+            audio.parentNode.removeChild(audio);
+            context.close();
+        } catch {
+            
+        }
+        audioElement = document.createElement("audio");
+        audioElement.id = 'song';
+        audioElement.controls = 'controls';
+        audioElement.src = './Samples/sample-two.mp3';
+        document.getElementById('audio').appendChild(audioElement)
+        audioElement.play();
     } else {
 
     }
