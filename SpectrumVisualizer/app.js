@@ -15,35 +15,23 @@ function windowResized() {
     rLine.style.right = '15vw';
     rLine.style.width = '40vw';
 
-    for (let num = 0; num < numberOfLines; num++) {
-        try {
-            audioStringArtist = document.getElementById("artist-bottom")
-            audioStringArtist.parentNode.removeChild(audioStringArtist)
-            audioStringName = document.getElementById("melody-bottom")
-            audioStringName.parentNode.removeChild(audioStringName)
-        } catch {
-
+    try {
+        for (let num = 0; num < numberOfLines; num++) {
+            try {
+                audioStringArtist = document.getElementById("artist-bottom")
+                audioStringArtist.parentNode.removeChild(audioStringArtist)
+                audioStringName = document.getElementById("melody-bottom")
+                audioStringName.parentNode.removeChild(audioStringName)
+            } catch (e) {
+    
+            }
         }
-    }
+    } catch {
 
-    numberOfLines = int(windowHeight/70);
-
-    for (let num = 0; num < int(windowHeight/70); num++) {
-        audioStringArtist = document.createElement("marquee");
-        audioStringName = document.createElement("marquee");
-        audioStringArtist.id = 'artist-bottom';
-        audioStringName.id = 'melody-bottom';
-        audioStringArtist.scrollAmount=num/2 + 6;
-        audioStringName.scrollAmount=num/2 + 5;
-        audioStringArtist.direction = num % 2 === 0 ? 'left' : 'right';
-        audioStringArtist.innerHTML = artist.toUpperCase();
-        audioStringName.direction = num % 2 === 0 ? 'left' : 'right';
-        audioStringName.innerHTML = songName.toUpperCase();
-        audioStringArtist.scrollDelay = 300*(Math.random());
-        audioStringName.scrollDelay = 300*(Math.random());
-        document.getElementById('insert-songs').appendChild(audioStringArtist)
-        document.getElementById('insert-songs').appendChild(audioStringName)
     }
+    
+    createInfo()
+
   }
 
 function preload() {
@@ -81,7 +69,6 @@ function preload() {
         document.getElementById('audio').appendChild(audioElement)
         audio = document.getElementById("song");
         songIsPlaying = true;
-        startDrawing = true;
         files = this.files;
         audio.src = URL.createObjectURL(files[0]);
         audio.load();
@@ -121,23 +108,8 @@ function preload() {
             artist = fullName[1];
         }
 
-        for (let num = 0; num < int(windowHeight/70); num++) {
-            audioStringArtist = document.createElement("marquee");
-            audioStringName = document.createElement("marquee");
-            audioStringArtist.id = 'artist-bottom';
-            audioStringName.id = 'melody-bottom';
-            audioStringArtist.scrollAmount=num/2 + 6;
-            audioStringName.scrollAmount=num/2 + 5;
-            audioStringArtist.direction = num % 2 === 0 ? 'left' : 'right';
-            audioStringArtist.innerHTML = artist.toUpperCase();
-            audioStringName.direction = num % 2 === 0 ? 'left' : 'right';
-            audioStringArtist.scrollDelay = 300*(Math.random());
-            audioStringName.scrollDelay = 300*(Math.random());
-            audioStringName.innerHTML = songName.toUpperCase();
-            document.getElementById('insert-songs').appendChild(audioStringArtist)
-            document.getElementById('insert-songs').appendChild(audioStringName)
-        }
-        numberOfLines = int(windowHeight/70);
+        createInfo()
+
         analyser.getByteFrequencyData(dataArray);
     }
 }
@@ -202,5 +174,43 @@ function buttonPressed() {
         buttonFoll.innerHTML = 'PAUSE';
         audio.play();
         songIsPlaying = true;
+    }
+}
+
+function createInfo() {
+    for (let num = 0; num < int(windowHeight/70); num++) {
+        audioStringArtist = document.createElement("marquee");
+        audioStringName = document.createElement("marquee");
+        audioStringArtist.id = 'artist-bottom';
+        audioStringArtist.truespeed = 'truespeed';
+        audioStringName.truespeed = 'truespeed';
+        audioStringName.id = 'melody-bottom';
+        audioStringArtist.scrollAmount=num/2 + 6
+        audioStringName.scrollAmount=num/2 + 5
+        audioStringArtist.direction = 'left';
+        audioStringArtist.innerHTML = artist.toUpperCase();
+        audioStringName.direction = 'right';
+        audioStringArtist.scrollDelay = 300*(Math.random());
+        audioStringName.scrollDelay = 300*(Math.random());
+        audioStringName.innerHTML = songName.toUpperCase();
+        document.getElementById('insert-songs').appendChild(audioStringArtist)
+        document.getElementById('insert-songs').appendChild(audioStringName)
+    }
+    numberOfLines = int(windowHeight/70);
+}
+
+function sampleOnePressed() {
+    if (songIsPlaying === false) {
+        
+    } else {
+
+    }
+}
+
+function sampleTwoPressed() {
+    if (songIsPlaying === false) {
+        
+    } else {
+
     }
 }
