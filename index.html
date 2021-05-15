@@ -23,8 +23,8 @@
                 </div>
                 <div class="back">
                   <div class="button_base b04_3d_tick" id="control-button" onclick="buttonPressed()">
-                      <div id="prev">NOT SELECTED</div>
-                      <div id="foll">NOT SELECTED</div>
+                      <div id="prev">SONG NOT SELECTED</div>
+                      <div id="foll">SONG NOT SELECTED</div>
                   </div>
                 </div>
               </div>
@@ -34,6 +34,16 @@
           <div class="audio-name" id='insert-songs'>
           </div>
         </div> 
+        <div id="samples">
+          <div class="button_base b04_3d_tick" id="sample1" onclick="sampleOnePressed()">
+            <div id="prev">Sample1</div>
+            <div id="foll">Play</div>
+          </div>
+          <div class="button_base b04_3d_tick" id="sample2" onclick="sampleTwoPressed()">
+            <div id="prev">Sample2</div>
+            <div id="foll">Play</div>
+          </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
     <script src="./SpectrumVisualizer/app.js" type="text/javascript"></script>
