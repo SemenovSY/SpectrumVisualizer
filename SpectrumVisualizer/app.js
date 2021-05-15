@@ -15,20 +15,7 @@ function windowResized() {
     rLine.style.right = '15vw';
     rLine.style.width = '40vw';
 
-    try {
-        for (let num = 0; num < numberOfLines; num++) {
-            try {
-                audioStringArtist = document.getElementById("artist-bottom")
-                audioStringArtist.parentNode.removeChild(audioStringArtist)
-                audioStringName = document.getElementById("melody-bottom")
-                audioStringName.parentNode.removeChild(audioStringName)
-            } catch (e) {
-    
-            }
-        }
-    } catch {
-
-    }
+    deleteInfo()
     
     createInfo()
 
@@ -199,6 +186,19 @@ function createInfo() {
     numberOfLines = int(windowHeight/70);
 }
 
+function deleteInfo() {
+    try {
+        for (let num = 0; num < numberOfLines; num++) {
+            audioStringArtist = document.getElementById("artist-bottom")
+            audioStringArtist.parentNode.removeChild(audioStringArtist)
+            audioStringName = document.getElementById("melody-bottom")
+            audioStringName.parentNode.removeChild(audioStringName)
+        }
+    } catch (e) {
+
+    }
+}
+
 function sampleOnePressed() {
     if (songIsPlaying === false) {
         try {
@@ -211,8 +211,29 @@ function sampleOnePressed() {
         audioElement.id = 'song';
         audioElement.controls = 'controls';
         audioElement.src = './Samples/sample-one.mp3';
-        document.getElementById('audio').appendChild(audioElement)
         audioElement.play();
+
+        artist = 'SAMPLE'
+        songName = 'ONE'
+
+        deleteInfo();
+        createInfo();
+
+        context = new AudioContext();
+
+        src = context.createMediaElementSource(audioElement);
+
+        analyser = context.createAnalyser();
+
+        src.connect(analyser);
+        analyser.connect(context.destination);
+
+        analyser.fftSize = 4096;
+        bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+
+        analyser.getByteFrequencyData(dataArray);
+
     } else {
 
     }
@@ -230,8 +251,29 @@ function sampleTwoPressed() {
         audioElement.id = 'song';
         audioElement.controls = 'controls';
         audioElement.src = './Samples/sample-two.mp3';
-        document.getElementById('audio').appendChild(audioElement)
         audioElement.play();
+
+        artist = 'SAMPLE';
+        songName = 'TWO';
+
+        deleteInfo();
+        createInfo();
+        
+        context = new AudioContext();
+
+        src = context.createMediaElementSource(audioElement);
+
+        analyser = context.createAnalyser();
+
+        src.connect(analyser);
+        analyser.connect(context.destination);
+
+        analyser.fftSize = 4096;
+        bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+
+        analyser.getByteFrequencyData(dataArray);
+
     } else {
 
     }
