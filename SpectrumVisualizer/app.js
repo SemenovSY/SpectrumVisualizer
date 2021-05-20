@@ -106,14 +106,12 @@ function setup() {
 }
 
 function draw() {
-    console.log(songIsPlaying, lastSample)
     if (songIsPlaying === true || lastSample === true) {
         if (lastSample === true) {
             sample_analyser.getByteFrequencyData(DataArray);
         } else {
             analyser.getByteFrequencyData(dataArray);
         }
-        console.log(songIsPlaying, lastSample)
         dataArray.reverse()
         clear()
         ortho(-1900, 900, -1000, 1900, -400, 2100);
