@@ -26,6 +26,8 @@ function windowResized() {
 function preload() {
     buttons = document.getElementById("buttons")
     var file = document.getElementById("thefile");
+    context = new AudioContext();
+
     file.onchange = function() {
         
         buttonWasPressed = false;
@@ -232,20 +234,20 @@ function sampleOnePressed() {
         deleteInfo();
         createInfo();
 
-        sample_context = new AudioContext();
+        context = new AudioContext();
 
-        sample_src = context.createMediaElementSource(audioElement);
+        src = context.createMediaElementSource(audioElement);
 
-        sample_analyser = context.createAnalyser();
+        analyser = context.createAnalyser();
 
-        sample_src.connect(analyser);
-        sample_analyser.connect(context.destination);
+        src.connect(analyser);
+        analyser.connect(context.destination);
 
-        sample_analyser.fftSize = 4096;
+        analyser.fftSize = 4096;
         bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
 
-        sample_analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray);
 
     } else {
 
@@ -269,20 +271,20 @@ function sampleTwoPressed() {
         deleteInfo();
         createInfo();
         
-        sample_context = new AudioContext();
+        context = new AudioContext();
 
-        sample_src = context.createMediaElementSource(audioElement);
+        src = context.createMediaElementSource(audioElement);
 
-        sample_analyser = context.createAnalyser();
+        analyser = context.createAnalyser();
 
-        sample_src.connect(analyser);
-        sample_analyser.connect(context.destination);
+        src.connect(analyser);
+        analyser.connect(context.destination);
 
-        sample_analyser.fftSize = 4096;
+        analyser.fftSize = 4096;
         bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
 
-        sample_analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray);
 
     } else {
 
