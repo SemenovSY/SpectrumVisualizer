@@ -106,7 +106,7 @@ function setup() {
 function draw() {
     if (songIsPlaying === true || lastSample === true) {
         if (lastSample === true) {
-            sample_analyser.getByteFrequencyData(DataArray);
+            sample_analyser.getByteFrequencyData(dataArray);
         } else {
             analyser.getByteFrequencyData(dataArray);
         }
