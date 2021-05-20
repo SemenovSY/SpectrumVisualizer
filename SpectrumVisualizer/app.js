@@ -91,9 +91,7 @@ function preload() {
         getInfo();
         deleteInfo();
         createInfo();
-        console.log('kek')
         analyser.getByteFrequencyData(dataArray);
-        console.log('kek1')
     }
 }
 
@@ -253,9 +251,9 @@ function sampleOnePressed() {
 
         sample_analyser.fftSize = 4096;
         sampleBufferLength = sample_analyser.frequencyBinCount;
-        DataArray = new Uint8Array(sampleBufferLength);
+        dataArray = new Uint8Array(sampleBufferLength);
 
-        sample_analyser.getByteFrequencyData(DataArray);
+        sample_analyser.getByteFrequencyData(dataArray);
 
     } else {
 
@@ -290,9 +288,9 @@ function sampleTwoPressed() {
 
         sample_analyser.fftSize = 4096;
         sampleBufferLength = sample_analyser.frequencyBinCount;
-        DataArray = new Uint8Array(sampleBufferLength);
+        dataArray = new Uint8Array(sampleBufferLength);
 
-        sample_analyser.getByteFrequencyData(DataArray);
+        sample_analyser.getByteFrequencyData(dataArray);
 
     } else {
 
